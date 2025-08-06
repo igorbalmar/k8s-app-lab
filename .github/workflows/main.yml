@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: k8s-labs
 
     steps:
     - name: Checkout repository
