@@ -26,7 +26,6 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        context: dotnet-app
         file: Dockerfile.linux
         push: true
         tags: igorbalmar/dotnet-app:latest
