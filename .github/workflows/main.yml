@@ -27,6 +27,6 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: dotnet-app
-        file: "{context}/Dockerfile.linux"
+        file: Dockerfile.linux
         push: true
         tags: igorbalmar/dotnet-app:latest
