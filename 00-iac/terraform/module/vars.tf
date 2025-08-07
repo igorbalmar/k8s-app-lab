@@ -17,3 +17,19 @@ variable "subscriptionId" {
 variable "kubernetesVersion" {
     type = string
 }
+
+variable "albVersion" {
+  type = string
+}
+
+variable "argoVersion" {
+  type = string
+}
+
+variable "autoscaling" {
+  type = string
+}
+
+variable "maxNodes" {
+  type = number
+}
