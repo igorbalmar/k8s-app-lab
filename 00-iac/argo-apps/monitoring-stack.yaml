@@ -6,9 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/prometheus-community/helm-charts
+    repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    path: charts/kube-prometheus-stack
     targetRevision: 75.18.1
     helm:
       values: |
@@ -16,6 +15,29 @@ spec:
           enabled: true
           ingress:
             enabled: false
+  destination:
+    server: https://kubernetes.default.svc        
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    chart: loki-stack
+    targetRevision: 2.10.2
+    helm:
+      values: |
+        loki:
+          isDefault: false
   destination:
     server: https://kubernetes.default.svc        
     namespace: monitoring
