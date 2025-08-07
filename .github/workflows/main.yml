@@ -7,8 +7,6 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    env:
-      RELEASE_VERSION: ${{ steps.vars.outputs.RELEASE_VERSION }}
 
     steps:
     - name: Checkout repo
