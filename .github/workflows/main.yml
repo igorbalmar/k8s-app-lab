@@ -1,21 +1,20 @@
-name: Docker Image CI
+name: Build and Deploy App
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-env:
-  RELEASE_VERSION: $(date +%Y-%m-%d-%s)
+    branches: [main]
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout repo
       uses: actions/checkout@v4
+
+    - name: Set release version
+      id: vars
+      run: echo "RELEASE_VERSION=$(date +%Y.%m.%d-"$(git rev-parse --short HEAD)")" >> $GITHUB_ENV
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -31,7 +30,18 @@ jobs:
       with:
         file: Dockerfile.linux
         push: true
-        tags: igorbalmar/dotnet-app:${RELEASE_VERSION}
-    
-    - name:
-      run: kustomize edit set  image igorbalmar/dotnet-app:${RELEASE_VERSION}
+        tags: igorbalmar/dotnet-app:$RELEASE_VERSION
+
+    - name: Update chart version
+      run: |
+        sed -i "s/appVersion.*/appVersion: \"$RELEASE_VERSION\"/g" chart/Chart.yaml
+        sed -i "s/tag:.*/tag: \"$RELEASE_VERSION\"/g" chart/values.yaml
+
+    - name: Commit and push changes
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git tag -d $RELEASE_VERSION
+        git add chart/Chart.yaml chart/values.yaml
+        git commit -m "Release: $RELEASE_VERSION"
+        git push
