@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
+  name: kube-prometheus-stack
   namespace: argocd
 spec:
   project: default
@@ -26,7 +26,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
+  name: loki-stack
   namespace: argocd
 spec:
   project: default
@@ -38,6 +38,25 @@ spec:
       values: |
         loki:
           isDefault: false
+  destination:
+    server: https://kubernetes.default.svc        
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tempo
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    chart: tempo
+    targetRevision: 1.23.2
   destination:
     server: https://kubernetes.default.svc        
     namespace: monitoring
