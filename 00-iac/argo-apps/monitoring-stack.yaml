@@ -8,6 +8,7 @@ spec:
   source:
     repoURL: https://github.com/prometheus-community/helm-charts
     chart: kube-prometheus-stack
+    path: charts
     targetRevision: 75.18.1
     helm:
       values: |
