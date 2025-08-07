@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: git@github.com:igorbalmar/k8s-app-lab.git
     targetRevision: main
-    path: dotnet-app
+    path: chart
     helm:
       valueFiles:
         - values.yaml                                    # optional, can be more than one

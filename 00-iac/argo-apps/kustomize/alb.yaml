@@ -1,8 +1,0 @@
-apiVersion: alb.networking.azure.io/v1
-kind: ApplicationLoadBalancer
-metadata:
-  name: main
-  namespace: default
-spec:
-  associations:
-  - '/subscriptions/f4b29925-415a-4506-8a73-6992820c05bb/resourceGroups/challenge/providers/Microsoft.Network/virtualNetworks/challenge-vnet/subnets/challenge-agfc-subnet'
