@@ -8,7 +8,7 @@ resource "azurerm_user_assigned_identity" "alb_identity" {
 resource "azurerm_role_assignment" "aks_rg_reader" {
   principal_id          = azurerm_user_assigned_identity.alb_identity.principal_id
   scope                 = azurerm_kubernetes_cluster.aks_lab.node_resource_group_id
-  role_definition_id    = "/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"
+  role_definition_id    = "/subscriptions/${var.subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7"
   principal_type        = "ServicePrincipal"
 }
 
