@@ -1,7 +1,7 @@
 apiVersion: opentelemetry.io/v1beta1
 kind: OpenTelemetryCollector
 metadata:
-  name: traces
+  name: traces-collector
   namespace: monitoring
 spec:
   config:
