@@ -36,6 +36,7 @@ To do:
 - mutating validando recursos alterados
 - admission webhook com políticas de repositório, namespace, etc
 - definir cotas para controle de custos
+- arrumar prometheus
 
 Débito técnico:
 - ajustar o chart do otel operator
