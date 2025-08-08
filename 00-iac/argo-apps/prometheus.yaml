@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prom
+  name: prometheus
   namespace: argocd
 spec:
   project: default
@@ -11,7 +11,7 @@ spec:
     targetRevision: 75.18.1
     helm:
       values: |
-        fullNameOverride: prom
+        fullNameOverride: prometheus
         grafana:
           enabled: true
           ingress:
@@ -25,4 +25,5 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
+    - ServerSideApply=true
     
