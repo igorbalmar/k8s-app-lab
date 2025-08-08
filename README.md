@@ -29,6 +29,7 @@ To do:
 - canary deploy (argo rollouts)
 - kube-cost
 - cluster mesh (cilium)
+- ajustar saneamento das imagens
 
 Débito técnico:
 - ajustar o chart do otel operator
