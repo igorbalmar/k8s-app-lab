@@ -16,6 +16,7 @@ resource "azurerm_subnet" "agfc_subnet" {
   delegation {
     name = "delegation"
     service_delegation {
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
       name = "Microsoft.ServiceNetworking/trafficControllers"
     }
   }

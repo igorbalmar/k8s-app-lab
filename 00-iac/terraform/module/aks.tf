@@ -11,17 +11,17 @@ resource "azurerm_kubernetes_cluster" "aks_lab" {
   dns_prefix              = var.clusterName
 
   default_node_pool {
-    name                  = "default"
-    node_count            = 1
-    max_count             = var.maxNodes
-    min_count             = 1
-    vm_size               = var.vmSize
-    vnet_subnet_id        = azurerm_subnet.aks_subnet.id
-    auto_scaling_enabled  = var.autoscaling
+    name                          = "default"
+    max_count                     = var.maxNodes
+    min_count                     = 1
+    vm_size                       = var.vmSize
+    vnet_subnet_id                = azurerm_subnet.aks_subnet.id
+    auto_scaling_enabled          = var.autoscaling
+    temporary_name_for_rotation   = "temporary"
     
     upgrade_settings {
       drain_timeout_in_minutes      = 0
-      max_surge                     = "100%" 
+      max_surge                     = "50%" 
       node_soak_duration_in_minutes = 0
     }
     
