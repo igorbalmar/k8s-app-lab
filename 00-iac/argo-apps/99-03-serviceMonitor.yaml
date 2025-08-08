@@ -1,19 +1,14 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: dotnet-app
-  namespace: monitoring
-  labels:
-    release: prometheus
+  name: dotnet-app-helm
+  namespace: default
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/instance: dotnet-app-helm
       app.kubernetes.io/name: dotnet-app
-  namespaceSelector:
-    matchNames:
-      - default  # namespace where your app is deployed
   endpoints:
-    - port: http-metrics  # must match Service port name
-      path: /metrics
-      interval: 10s
+  - port: http
+    interval: 15s
+    path: /metrics
