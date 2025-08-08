@@ -52,7 +52,7 @@ ingress:
 gateway:
   name: gateway-01
 httproute:
-  hostname: myapp.example.com
+  hostname: "*"
 service:
   port: 8080
 
