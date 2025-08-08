@@ -31,6 +31,11 @@ To do:
 - cluster mesh (cilium)
 - ajustar saneamento das imagens
 - profiling (pyroscope)
+- autenticação da stack de monitoramento
+- scan de segurança das imagens geradas
+- mutating validando recursos alterados
+- admission webhook com políticas de repositório, namespace, etc
+- definir cotas para controle de custos
 
 Débito técnico:
 - ajustar o chart do otel operator
