@@ -3,9 +3,9 @@ name: Build and Deploy App
 on:
   push:
     branches: [main]
-  paths-ignore:
-    - 00-iac
-    - chart
+    paths-ignore:
+      - 00-iac/**
+      - chart/**
 
 jobs:
   build-deploy:
@@ -16,9 +16,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set release version
-      id: vars
       run: echo "RELEASE_VERSION=$(date +%Y.%m.%d-"$(git rev-parse --short HEAD)")" >> $GITHUB_ENV
-
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -41,12 +39,12 @@ jobs:
         sed -i "s/appVersion:.*/appVersion: \"${{ env.RELEASE_VERSION }}\"/g" chart/Chart.yaml
         sed -i "s/tag:.*/tag: \"${{ env.RELEASE_VERSION }}\"/g" chart/values.yaml
 
-     - name: Release commit
-       uses: actions/checkout@v4
-       run: |
-          git config user.name ""github-actions[bot]"
-          git config user.email "github-actions@github.com"
-          git tag -d ${{ env.RELEASE_VERSION }} || true
-          git add chart/Chart.yaml chart/values.yaml
-          git commit -m "Release: ${{ env.RELEASE_VERSION }}"
-          git push
+    - name: Commit and push release changes
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions@github.com"
+        git add chart/Chart.yaml chart/values.yaml
+        git commit -m "Release: ${{ env.RELEASE_VERSION }}" || echo "No changes to commit"
+        git tag ${{ env.RELEASE_VERSION }}
+        git push
+        git push origin ${{ env.RELEASE_VERSION }}
