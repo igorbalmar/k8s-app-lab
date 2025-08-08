@@ -15,7 +15,7 @@ spec:
     - backendRefs:
         - group: ""
           kind: Service
-          name: {{ include "dotnet-app.fullname" . }}-service
+          name: {{ include "dotnet-app.fullname" . }}
           port: {{ .Values.service.port }}
       weight: 1
       matches:
