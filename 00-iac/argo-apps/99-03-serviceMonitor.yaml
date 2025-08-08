@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: dotnet-app-helm
+      app.kubernetes.io/name: dotnet-app
   endpoints:
   - port: http
     interval: 15s
