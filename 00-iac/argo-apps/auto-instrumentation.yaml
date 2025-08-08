@@ -1,7 +1,7 @@
 apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
-  name: dot-net
+  name: dot-net-auto-instrumentation
 spec:
   exporter:
     endpoint: http://tempo.monitoring:4317

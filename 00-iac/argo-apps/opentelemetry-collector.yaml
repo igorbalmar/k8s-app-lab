@@ -4,7 +4,6 @@ metadata:
   name: traces
   namespace: monitoring
 spec:
-  image: otel/opentelemetry-collector-contrib:0.131.0
   config:
     receivers:
       otlp:
