@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - '00-iac/**'
       - 'chart/**'
+      - '.github/**'
 
 jobs:
   build-deploy:
