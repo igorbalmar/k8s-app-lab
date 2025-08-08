@@ -30,6 +30,7 @@ To do:
 - kube-cost
 - cluster mesh (cilium)
 - ajustar saneamento das imagens
+- profiling (pyroscope)
 
 Débito técnico:
 - ajustar o chart do otel operator
