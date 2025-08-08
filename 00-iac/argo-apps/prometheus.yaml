@@ -11,7 +11,7 @@ spec:
     targetRevision: 75.18.1
     helm:
       values: |
-        nameOverride: prom
+        fullNameOverride: prom
         grafana:
           enabled: true
           ingress:
