@@ -24,7 +24,7 @@ spec:
     exporters:
       debug: {}
       otlp/tempo:
-        endpoint: "tempo.monitoring:4317"
+        endpoint: "tempo.monitoring:3100"
 
     service:
       pipelines:
