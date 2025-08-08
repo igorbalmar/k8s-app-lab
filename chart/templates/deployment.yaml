@@ -64,6 +64,10 @@ spec:
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if and .Values.topologySpreadConstraints.enabled .Values.topologySpreadConstraints.constraints }}
+      topologySpreadConstraints:
+        {{- toYaml .Values.topologySpreadConstraints.constraints | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
