@@ -16,6 +16,22 @@ spec:
           enabled: true
           ingress:
             enabled: false
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1
+              memory: 512Mi
+        prometheus:
+          prometheusSpec:
+            resources:
+              requests:
+                cpu: 200m
+                memory: 512Mi
+              limits:
+                cpu: 1
+                memory: 512Mi
   destination:
     server: https://kubernetes.default.svc        
     namespace: monitoring
@@ -26,4 +42,3 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
-    
