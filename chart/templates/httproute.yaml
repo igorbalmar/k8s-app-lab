@@ -6,10 +6,19 @@ metadata:
     {{- include "dotnet-app.labels" . | nindent 4 }}
 spec:
   parentRefs:
-    - name: {{ .Values.gateway.name }} # Reference to your Gateway resource
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: {{ .Values.gateway.name }}
   hostnames:
     - {{ .Values.httproute.hostname }}
   rules:
     - backendRefs:
-        - name: {{ include "dotnet-app.fullname" . }}-service
+        - group: ""
+          kind: Service
+          name: {{ include "dotnet-app.fullname" . }}-service
           port: {{ .Values.service.port }}
+      weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
