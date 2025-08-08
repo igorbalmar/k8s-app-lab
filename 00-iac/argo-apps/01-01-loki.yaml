@@ -40,7 +40,7 @@ spec:
           chunksCache:
             enabled: false
           lokiCanary:
-            enabled: false
+            enabled: enabled
           minio:
             enabled: true     
           deploymentMode: SingleBinary
