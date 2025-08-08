@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   exporter:
-    endpoint: http://tempo.monitoring:4317
+    endpoint: http://traces-collector-collector:4318
   propagators:
     - tracecontext
     - baggage

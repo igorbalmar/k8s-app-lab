@@ -25,6 +25,7 @@ spec:
       debug: {}
       otlp/tempo:
         endpoint: "tempo.monitoring:4317"
+        insecure: true
 
     service:
       pipelines:
