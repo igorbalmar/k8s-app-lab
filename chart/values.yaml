@@ -111,6 +111,10 @@ autoscaling:
   targetCPUUtilizationPercentage: 40
   targetMemoryUtilizationPercentage: 60
 
+pdb:
+  enabled: true
+  minAvailable: 1
+
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
