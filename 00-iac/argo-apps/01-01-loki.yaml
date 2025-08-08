@@ -12,6 +12,7 @@ spec:
     helm:
       values: |
           loki:
+            auth_enabled: false
             resources:
               requests:
                 cpu: 200m
