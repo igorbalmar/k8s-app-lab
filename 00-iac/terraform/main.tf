@@ -8,5 +8,5 @@ module "aks" {
   albVersion            = "1.7.9"
   argoVersion           = "5.19.12"
   autoscaling           = true
-  maxNodes              = 4 #devido free tier, cota máxima de 4 cpus 
+  maxNodes              = 4
 }
