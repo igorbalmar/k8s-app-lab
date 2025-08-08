@@ -19,8 +19,6 @@ spec:
               limits:
                 cpu: 1
                 memory: 512Mi
-            limits_config:
-              volume_enabled: true
             commonConfig:
               replication_factor: 1
             schemaConfig:
