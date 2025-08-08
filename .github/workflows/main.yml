@@ -34,15 +34,12 @@ jobs:
         push: true
         tags: igorbalmar/dotnet-app:${{ env.RELEASE_VERSION }}
 
-    - name: Update chart version
+    - name: Commit and push release changes
       run: |
         sed -i "s/appVersion:.*/appVersion: \"${{ env.RELEASE_VERSION }}\"/g" chart/Chart.yaml
         sed -i "s/tag:.*/tag: \"${{ env.RELEASE_VERSION }}\"/g" chart/values.yaml
-
-    - name: Commit and push release changes
-      run: |
         git config user.name "github-actions[bot]"
-        git config user.email "github-actions@github.com"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
         git add chart/Chart.yaml chart/values.yaml
         git commit -m "Release: ${{ env.RELEASE_VERSION }}" || echo "No changes to commit"
         git tag ${{ env.RELEASE_VERSION }}
