@@ -14,11 +14,14 @@ spec:
         tempo:
           resources:
             requests:
-              cpu: 400m
-              memory: 512Mi
+              cpu: 200m
+              memory: 256Mi
             limits:
               cpu: 1
-              memory: 512Mi
+              memory: 256Mi
+        persistence:
+          enabled: true
+          size: 10Gi
   destination:
     server: https://kubernetes.default.svc        
     namespace: monitoring
